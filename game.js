@@ -29,11 +29,13 @@
         cell.innerText = item === -1 ? "" : player_details[item].symbol;
 
         cell.style.backgroundColor =
-          item === -1
-            ? 'aquamarine'
-            : player_details[item].backgroundColor;
+          item === -1 ? "aquamarine" : player_details[item].backgroundColor;
       });
     });
+
+    setTimeout(() => {
+      winnerCheck();
+    }, 200);
   }
 
   function divClickHandler(e) {
@@ -47,8 +49,98 @@
       renderCanvas();
     }
   }
-
-  function winnerCheck() {}
+  function isNegativeValueExists(first, second, third) {
+    return first === -1
+      ? true
+      : second === -1
+      ? true
+      : third === -1
+      ? true
+      : false;
+  }
+  function winnerCheck() {
+    if (
+      game_values[0][0] === game_values[0][1] &&
+      game_values[0][1] === game_values[0][2] &&
+      !isNegativeValueExists(
+        game_values[0][0],
+        game_values[0][1],
+        game_values[0][2]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[0][0]].symbol}`);
+    } else if (
+      game_values[1][0] === game_values[1][1] &&
+      game_values[1][1] === game_values[1][2] &&
+      !isNegativeValueExists(
+        game_values[1][0],
+        game_values[1][1],
+        game_values[1][2]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[1][0]].symbol}`);
+    } else if (
+      game_values[2][0] === game_values[2][1] &&
+      game_values[2][1] === game_values[2][2] &&
+      !isNegativeValueExists(
+        game_values[2][0],
+        game_values[2][1],
+        game_values[2][2]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[2][0]].symbol}`);
+    } else if (
+      game_values[0][0] === game_values[1][0] &&
+      game_values[1][0] === game_values[2][0] &&
+      !isNegativeValueExists(
+        game_values[0][0],
+        game_values[1][0],
+        game_values[2][0]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[0][0]].symbol}`);
+    } else if (
+      game_values[0][1] === game_values[1][1] &&
+      game_values[1][1] === game_values[2][1] &&
+      !isNegativeValueExists(
+        game_values[0][1],
+        game_values[1][1],
+        game_values[2][1]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[0][1]].symbol}`);
+    } else if (
+      game_values[0][2] === game_values[1][2] &&
+      game_values[1][2] === game_values[2][2] &&
+      !isNegativeValueExists(
+        game_values[0][2],
+        game_values[1][2],
+        game_values[2][2]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[0][2]].symbol}`);
+    } else if (
+      game_values[0][0] === game_values[1][1] &&
+      game_values[1][1] === game_values[2][2] &&
+      !isNegativeValueExists(
+        game_values[0][0],
+        game_values[1][1],
+        game_values[2][2]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[0][0]].symbol}`);
+    } else if (
+      game_values[0][2] === game_values[1][1] &&
+      game_values[1][1] === game_values[2][0] &&
+      !isNegativeValueExists(
+        game_values[0][2],
+        game_values[1][1],
+        game_values[2][0]
+      )
+    ) {
+      return alert(`The Winner is ${player_details[game_values[0][2]].symbol}`);
+    }
+  }
 
   document.getElementById("reset_game").addEventListener("click", function () {
     game_values = getInitialState();
